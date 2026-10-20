@@ -1,0 +1,8 @@
+document.addEventListener('DOMContentLoaded',()=>{
+ const toggle=document.querySelector('.nav-toggle');const nav=document.querySelector('.nav');
+ if(toggle&&nav){toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));toggle.textContent=open?'Close':'Menu';});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.textContent='Menu';}));}
+ document.querySelectorAll('.faq-q').forEach(q=>q.addEventListener('click',()=>{const item=q.closest('.faq-item');const open=item.classList.toggle('open');q.setAttribute('aria-expanded',String(open));const sign=q.querySelector('[data-sign]');if(sign)sign.textContent=open?'−':'+';}));
+ document.querySelectorAll('[data-inquiry-form]').forEach(form=>form.addEventListener('submit',e=>{e.preventDefault();if(!form.reportValidity())return;const msg=form.querySelector('.form-message');if(msg){msg.textContent='Demo only: your information has not been sent or stored. To make a real appointment inquiry, call (613) 668-4089. This form needs an owner-approved destination before launch.';msg.classList.add('show');msg.setAttribute('role','status');}}));
+ document.querySelectorAll('[data-gallery-filter]').forEach(btn=>btn.addEventListener('click',()=>{const filter=btn.dataset.galleryFilter;document.querySelectorAll('[data-gallery-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b===btn)));document.querySelectorAll('[data-gallery-category]').forEach(item=>{item.hidden=filter!=='all'&&item.dataset.galleryCategory!==filter;});}));
+ document.querySelectorAll('[data-year]').forEach(el=>el.textContent=new Date().getFullYear());
+});
